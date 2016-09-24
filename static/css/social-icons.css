@@ -1,0 +1,39 @@
+
+.social {
+    text-align: right;
+    font-size: 1em;
+    color: #555;
+    overflow: hidden;
+}
+
+.social i {
+    vertical-align: middle;
+    margin: .3em;
+    cursor: pointer;
+    transition: color 300ms ease, margin-top 300ms ease;
+    transform: translateZ(0);
+}
+
+.social i:hover {
+    margin-top: -1px;
+}
+
+.social i#twitter:hover {
+    color: #77DDF6;
+}
+
+.social i#pinterest:hover {
+    color: #C92228;
+}
+
+.social i#facebook:hover {
+    color: #3b5998;
+}
+
+.social i#instagram:hover {
+    color: #ffc838;
+}
+
+.social i#plus:hover {
+    color: #D43402;
+}

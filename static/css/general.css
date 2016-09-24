@@ -1,0 +1,14 @@
+
+#header-logo-container {
+    width: 100%;
+}
+
+#header-logo {
+    max-height: 50px;
+    display: block;
+    margin: auto;
+}
+
+.navbar-brand-thumb{
+    max-width: 25px;
+}
