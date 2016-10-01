@@ -1,5 +1,8 @@
-from __future__ import unicode_literals
+import os
+
 from django.db import models
+
+from Collector import settings
 
 
 class Currency(models.Model):
@@ -23,7 +26,7 @@ class Book(models.Model):
     currency = models.ForeignKey(Currency, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=0, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    thumbnail = models.FileField(upload_to='book_images/', default='settings.STATIC_URL/images/no_image.png')
+    thumbnail = models.FileField(upload_to='book_images', default='/book_images/no_image.png')
 
     def __unicode__(self):
        return self.name

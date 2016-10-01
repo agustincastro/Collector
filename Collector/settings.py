@@ -17,6 +17,12 @@ from os.path import normpath, join
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+
+# Absolute filesystem path to the top-level project folder:
+
+MEDIA_ROOT = join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
@@ -27,6 +33,21 @@ SECRET_KEY = ')0linzs@mc(w@lyr%-=)tm-$+vvo=z0yn*b*eb6h3q5#2!ub(@'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+
+########## STATIC FILE CONFIGURATION
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
+STATIC_URL = '/static/'
+
+# See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
+STATICFILES_DIRS = (
+    normpath(join(BASE_DIR, 'static')),
+    normpath(join(BASE_DIR, 'static/css')),
+    normpath(join(BASE_DIR, 'static/js')),
+)
+
+########## END STATIC FILE CONFIGURATION
 
 # Application definition
 
@@ -118,18 +139,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-########## STATIC FILE CONFIGURATION
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
-STATIC_URL = '/static/'
 
-# See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-STATICFILES_DIRS = (
-    normpath(join(BASE_DIR, 'static')),
-    normpath(join(BASE_DIR, 'static/css')),
-    normpath(join(BASE_DIR, 'static/js')),
-)
+########## APPLICATION SETTINGS
 
-########## END STATIC FILE CONFIGURATION
+PAGER_TAKE = 9  # Number of items for each paged list
+
+
+
+########## END APPLICATION SETTINGS
