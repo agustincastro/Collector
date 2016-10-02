@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-lg-4">
+            <img class="group list-group-image" src="{{ object.thumbnail.url }}" alt=""/>
+            <ul class="list-inline thumbnail-gallery">
+                {% for image in images %}
+                    <li>
+                        <img class="group list-group-image" src="/media/{{ image }}" alt=""/>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="col-lg-8">
+            <h4>{{ object.name }}</h4>
+            <p class="lead">{{ item.currency.symbol }} {{ item.price }}</p>
+            <h5>{{ object.description }}</h5>
+            <p>ISBN: {{ object.isbn }}</p>
+        </div>
+    </div>
+
+{% endblock %}
