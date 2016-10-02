@@ -1,3 +1,7 @@
 #products{
     padding:0 9px 0 9px;
 }
+
+.item-image{
+    max-height: 200px;
+}
