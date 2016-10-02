@@ -4,10 +4,10 @@
 {% for item in items %}
     <div class="item  col-xs-3 col-lg-3">
         <div class="thumbnail">
-            <img class="group list-group-image item-image" src="{{ item.thumbnail.url }}" alt=""/>
+            <img class="group list-group-image" src="{{ item.thumbnail.url }}" alt=""/>
             <div class="caption">
                 <h4 class="group inner list-group-item-heading">
-                    {{ item.name }}
+                    <a href="/catalog/itemdetails/{{ item.pk }}">{{ item.name }}</a>
                 </h4>
                 <p class="group inner list-group-item-text">
                     {{ item.description }}</p>

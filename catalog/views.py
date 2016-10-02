@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from Collector import settings
 from catalog.models import Book
@@ -67,3 +67,16 @@ class CatalogListView(ListView):
         if self.search_term:
             return Book.objects.filter(name__icontains=self.search_term)
         return Book.objects.all()
+
+
+class ItemDetailView(DetailView):
+    """
+    Gets details of an item
+    """
+    model = Book
+    template_name = 'item_details.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ItemDetailView, self).get_context_data(**kwargs)
+        context['images'] = Book.objects.all().values_list('thumbnail', flat=True)[0:4]
+        return context
