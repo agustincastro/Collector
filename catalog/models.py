@@ -1,9 +1,5 @@
 import os
-
 from django.db import models
-
-from Collector import settings
-
 
 class Currency(models.Model):
     name = models.CharField(max_length=50)
@@ -26,7 +22,7 @@ class Book(models.Model):
     currency = models.ForeignKey(Currency, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=0, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    thumbnail = models.FileField(upload_to='book_images', default='/book_images/no_image.png')
+    thumbnail = models.FileField(upload_to='book_images/')
 
     def __unicode__(self):
        return self.name

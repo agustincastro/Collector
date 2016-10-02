@@ -2,7 +2,7 @@
 {% load static %}
 
 {% for item in items %}
-    <div class="item  col-xs-4 col-lg-4">
+    <div class="item  col-xs-3 col-lg-3">
         <div class="thumbnail">
             <img class="group list-group-image" src="{{ item.thumbnail.url }}" alt=""/>
             <div class="caption">
@@ -11,12 +11,8 @@
                 </h4>
                 <p class="group inner list-group-item-text">
                     {{ item.description }}</p>
-                <div class="row">
-                    <div class="col-xs-12 col-md-6">
-                        <p class="lead">
-                            {{ item.currency.symbol }} {{ item.price }}</p>
-                    </div>
-                </div>
+                <p class="group inner list-group-item-text">
+                    ISBN: {{ item.isbn }}</p>
             </div>
         </div>
     </div>
