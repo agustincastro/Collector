@@ -1,7 +1,10 @@
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.shortcuts import render, redirect
+from django.views import View
+from django.views.generic import ListView, DetailView
+
 from Collector import settings
+from catalog.forms import ItemForm
 from catalog.models import Book
 
 
@@ -19,7 +22,7 @@ class Index(ListView):
         items = Book.objects.all()
 
         page = self.request.GET.get('page')
-        #Add range template context variable that we can loop through pages
+        # Add range template context variable that we can loop through pages
         context['range'] = range(context['paginator'].num_pages)
         paginator = Paginator(items, self.paginate_by)
         try:
@@ -39,7 +42,7 @@ class CatalogListView(ListView):
     model = Book
     template_name = 'item_list.html'
     paginate_by = settings.PAGER_TAKE
-    search_term = '' # search term for filter
+    search_term = ''  # search term for filter
 
     def get_context_data(self, **kwargs):
         context = super(CatalogListView, self).get_context_data(**kwargs)
@@ -47,7 +50,7 @@ class CatalogListView(ListView):
         context['search_term'] = unicode(self.search_term)
 
         page = self.request.GET.get('page')
-        #Add range template context variable that we can loop through pages
+        # Add range template context variable that we can loop through pages
         context['range'] = range(context['paginator'].num_pages)
         paginator = Paginator(self.get_queryset(), self.paginate_by)
         try:
@@ -80,3 +83,15 @@ class ItemDetailView(DetailView):
         context = super(ItemDetailView, self).get_context_data(**kwargs)
         context['images'] = Book.objects.all().values_list('thumbnail', flat=True)[0:4]
         return context
+
+
+class CreateItem(View):
+    def get(self, request):
+        form = ItemForm()
+        return render(request, 'create_item.html', {'form': form})
+
+    def post(self, request):
+        form = ItemForm(request.POST)
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            return redirect('index.html')

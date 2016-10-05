@@ -32,3 +32,5 @@ $('#item-search-input').keyup(function () {
         getItems(searchTerm);
     }, 500);
 });
+
+
