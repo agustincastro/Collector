@@ -1,15 +1,58 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load boostrap_tags %}
 
 {% block content %}
 
     <h4>Add item</h4>
+    <div class="form-group col-lg-5">
     <hr>
-    <form action="/catalog/createitem" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Submit"/>
-    </form>
+        <form action="/catalog/createitem" method="post" class="form-horizontal">
+            {% csrf_token %}
+
+            <label for='{{ form.name }}'> {{ form.name.label }} </label>
+            {{ form.name | addcss:"form-control" }}
+
+            <label for='{{ form.description }}'> {{ form.description.label }} </label>
+            {{ form.description | addcss:"form-control" }}
+
+            <label for='{{ form.isbn }}'> {{ form.isbn.label }} </label>
+            {{ form.isbn | addcss:"form-control" }}
+
+            <label for='{{ form.date_aquired }}'> {{ form.date_aquired.label }} </label>
+            {{ form.date_aquired | addcss:"form-control" }}
+
+
+            <div class="form-group">
+                <div class="col-sm-6">
+                    <label for='{{ form.currency }}'> {{ form.currency.label }} </label>
+                    {{ form.currency | addcss:"form-control" }}
+                </div>
+                <div class="col-sm-6">
+                    <label for='{{ form.price }}'> {{ form.price.label }} </label>
+                    {{ form.price | addcss:"form-control" }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-6">
+                    <label for='{{ form.quantity }}'> {{ form.quantity.label }} </label>
+                    {{ form.quantity | addcss:"form-control" }}
+                </div>
+                <div class="col-sm-6">
+                    <label for='{{ form.category }}'> {{ form.category.label }} </label>
+                    {{ form.category | addcss:"form-control" }}
+                </div>
+            </div>
+
+
+            <label for='{{ form.thumbnail }}'> {{ form.thumbnail.label }} </label>
+            {{ form.thumbnail | addcss:"form-control" }}
+
+            <button type="submit" class="btn btn-primary">Save</button>
+
+        </form>
+    </div>
 
 {% endblock %}
