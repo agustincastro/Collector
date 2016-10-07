@@ -5,54 +5,73 @@
 
 {% block content %}
 
-    <h4>Add item</h4>
-    <div class="form-group col-lg-5">
-    <hr>
+    <div class="container col-lg-5">
+        <h4>Add item</h4>
+        <hr>
         <form action="/catalog/createitem" method="post" class="form-horizontal">
             {% csrf_token %}
 
-            <label for='{{ form.name }}'> {{ form.name.label }} </label>
-            {{ form.name | addcss:"form-control" }}
+            <div class="form-group">
+                <label for='name' class="col-sm-2"> {{ form.name.label }} </label>
+                <div class="col-sm-10">
+                    {{ form.name | addcss:"form-control" }}
+                </div>
 
-            <label for='{{ form.description }}'> {{ form.description.label }} </label>
-            {{ form.description | addcss:"form-control" }}
+            </div>
 
-            <label for='{{ form.isbn }}'> {{ form.isbn.label }} </label>
-            {{ form.isbn | addcss:"form-control" }}
-
-            <label for='{{ form.date_aquired }}'> {{ form.date_aquired.label }} </label>
-            {{ form.date_aquired | addcss:"form-control" }}
-
+            <div class="form-group">
+                <label for='' class="col-sm-12"> {{ form.description.label }} </label>
+                <div class="col-sm-12">
+                    {{ form.description | addcss:"form-control" }}
+                </div>
+            </div>
 
             <div class="form-group">
                 <div class="col-sm-6">
-                    <label for='{{ form.currency }}'> {{ form.currency.label }} </label>
+                    <label for=''> {{ form.isbn.label }} </label>
+                    {{ form.isbn | addcss:"form-control" }}
+                </div>
+                <div class="col-sm-6">
+                    <label for=''> {{ form.date_aquired.label }} </label>
+                    {{ form.date_aquired | addcss:"form-control" }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-6">
+                    <label for=''> {{ form.currency.label }} </label>
                     {{ form.currency | addcss:"form-control" }}
                 </div>
                 <div class="col-sm-6">
-                    <label for='{{ form.price }}'> {{ form.price.label }} </label>
+                    <label for=''> {{ form.price.label }} </label>
                     {{ form.price | addcss:"form-control" }}
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-sm-6">
-                    <label for='{{ form.quantity }}'> {{ form.quantity.label }} </label>
+                    <label for=''> {{ form.quantity.label }} </label>
                     {{ form.quantity | addcss:"form-control" }}
                 </div>
                 <div class="col-sm-6">
-                    <label for='{{ form.category }}'> {{ form.category.label }} </label>
+                    <label for=''> {{ form.category.label }} </label>
                     {{ form.category | addcss:"form-control" }}
                 </div>
             </div>
 
-
-            <label for='{{ form.thumbnail }}'> {{ form.thumbnail.label }} </label>
-            {{ form.thumbnail | addcss:"form-control" }}
-
-            <button type="submit" class="btn btn-primary">Save</button>
-
+            <div class="form-group">
+                <label for='' class="col-sm-2"> {{ form.thumbnail.label }} </label>
+                <div class="col-sm-10">
+                    {{ form.thumbnail | addcss:"form-control" }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <button type="submit" class="btn btn-info pull-right">Save</button>
+                </div>
+            </div>
         </form>
     </div>
+
 
 {% endblock %}
