@@ -19,7 +19,12 @@
             <h4>{{ object.name }}</h4>
             <p class="lead">{{ item.currency.symbol }} {{ item.price }}</p>
             <h5>{{ object.description }}</h5>
+            <hr>
             <p>ISBN: {{ object.isbn }}</p>
+            <p>Date aquired: {{ object.date_aquired | date:"F j, Y"}}</p>
+            <p>Price: {{ object.currency.symbol }} {{ object.price }}</p>
+            <p>Quantity: {{ object.quantity }}</p>
+            <p>Category: {{ object.category.name }}</p>
         </div>
     </div>
 
