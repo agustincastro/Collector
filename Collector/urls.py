@@ -7,5 +7,6 @@ urlpatterns = [
 
     url(r'^$', lambda r: HttpResponseRedirect('catalog/')),
     url(r'^catalog/', include('catalog.urls')),
+    url(r'^contact/', include('contact.urls')),
 
 ]
