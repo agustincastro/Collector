@@ -5,7 +5,7 @@
 
     <div class="row">
         <div class="col-lg-4">
-            <img class="group list-group-image" src="{{ object.thumbnail.url }}" alt=""/>
+            <img class="group list-group-image" src="{{ object.image_url|default_if_none:"/media/book_images/no_image.png" }}" alt=""/>
             <ul class="list-inline thumbnail-gallery">
                 {% for image in images %}
                     <li>

@@ -3,7 +3,7 @@
 {% for item in items %}
     <div class="item  col-xs-3 col-lg-3">
         <div class="thumbnail">
-            <img class="group list-group-image" src="{{ item.thumbnail.url }}" alt=""/>
+            <img class="group list-group-image" src="{{ item.image_url|default_if_none:"/media/book_images/no_image.png" }}" alt=""/>
             <div class="caption">
                 <h4 class="group inner list-group-item-heading">
                     <a href="/catalog/itemdetails/{{ item.pk }}">{{ item.name }}</a>

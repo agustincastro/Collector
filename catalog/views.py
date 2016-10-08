@@ -2,7 +2,6 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import ListView, DetailView
-
 from Collector import settings
 from catalog.forms import ItemForm
 from catalog.models import Book
@@ -85,7 +84,11 @@ class ItemDetailView(DetailView):
         return context
 
 
+
 class CreateItem(View):
+    """
+    Handles item creation form
+    """
     def get(self, request):
         form = ItemForm()
         return render(request, 'create_item.html', {'form': form})
@@ -93,5 +96,9 @@ class CreateItem(View):
     def post(self, request):
         form = ItemForm(request.POST)
         if form.is_valid():
+            form.save()
             # process the data in form.cleaned_data as required
             return redirect('index.html')
+        else:
+            return render(request, 'create_item.html', {'form': form})
+
