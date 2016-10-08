@@ -1,4 +1,3 @@
-
 {% load static %}
 
 {% for item in items %}
@@ -10,7 +9,7 @@
                     <a href="/catalog/itemdetails/{{ item.pk }}">{{ item.name }}</a>
                 </h4>
                 <p class="group inner list-group-item-text">
-                    {{ item.description }}</p>
+                    {{ item.description | truncatechars:120 }}</p>
                 <p class="group inner list-group-item-text">
                     ISBN: {{ item.isbn }}</p>
             </div>
