@@ -1,7 +1,9 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, DeleteView
+
 from Collector import settings
 from catalog.forms import ItemForm
 from catalog.models import Book
@@ -84,21 +86,37 @@ class ItemDetailView(DetailView):
         return context
 
 
-
 class CreateItem(View):
-    """
-    Handles item creation form
-    """
     def get(self, request):
         form = ItemForm()
-        return render(request, 'create_item.html', {'form': form})
+        return render(request, 'catalog/edit_item.html', {'form': form})
 
     def post(self, request):
         form = ItemForm(request.POST)
         if form.is_valid():
-            form.save()
-            # process the data in form.cleaned_data as required
-            return redirect('index.html')
+            saved_item = form.save()
+            # Redirects to the item details
+            return redirect('item_detail', pk=saved_item.pk)
         else:
-            return render(request, 'create_item.html', {'form': form})
+            return render(request, 'catalog/edit_item.html', {'form': form})
 
+
+class EditItem(View):
+    def get(self, request, pk):
+        item = get_object_or_404(Book, pk=pk)
+        form = ItemForm(instance=item)
+        return render(request, 'catalog/edit_item.html', {'form': form})
+
+    def post(self, request, pk):
+        item = get_object_or_404(Book, pk=pk)
+        form = ItemForm(request.POST, instance=item)
+        if form.is_valid():
+            saved_item = form.save()
+            return redirect('item_detail', pk=saved_item.pk)
+        else:
+            return render(request, 'catalog/edit_item.html', {'form': form})
+
+
+class RemoveItem(DeleteView):
+    model = Book
+    success_url = reverse_lazy('index')
