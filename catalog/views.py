@@ -92,7 +92,7 @@ class CreateItem(View):
         return render(request, 'catalog/edit_item.html', {'form': form})
 
     def post(self, request):
-        form = ItemForm(request.POST)
+        form = ItemForm(request.POST, request.FILES)
         if form.is_valid():
             saved_item = form.save()
             # Redirects to the item details
@@ -109,7 +109,7 @@ class EditItem(View):
 
     def post(self, request, pk):
         item = get_object_or_404(Book, pk=pk)
-        form = ItemForm(request.POST, instance=item)
+        form = ItemForm(request.POST,request.FILES, instance=item)
         if form.is_valid():
             saved_item = form.save()
             return redirect('item_detail', pk=saved_item.pk)
