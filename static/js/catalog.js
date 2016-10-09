@@ -33,4 +33,13 @@ $('#item-search-input').keyup(function () {
     }, 500);
 });
 
-
+// Function that handles the visualization of the image file field
+$('#id_thumbnail').change(function () {
+    if (this.files && this.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#img_preview').attr('src', e.target.result);
+        };
+        reader.readAsDataURL(this.files[0]);
+    }
+});

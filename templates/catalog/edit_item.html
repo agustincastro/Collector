@@ -73,5 +73,7 @@
         </form>
     </div>
 
+    <img id="img_preview" src="{{ form.instance.image_url|default_if_none:"/media/book_images/no_image.png" }}" />
+
 
 {% endblock %}
