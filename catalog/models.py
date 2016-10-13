@@ -1,6 +1,5 @@
-from __future__ import unicode_literals
+import os
 from django.db import models
-
 
 class Currency(models.Model):
     name = models.CharField(max_length=50)
@@ -23,10 +22,15 @@ class Book(models.Model):
     currency = models.ForeignKey(Currency, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=0, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    thumbnail = models.FileField(upload_to='book_images/', default='settings.STATIC_URL/images/no_image.png')
+    thumbnail = models.FileField(upload_to='book_images/', blank=True, null=True)
 
     def __unicode__(self):
        return self.name
+
+    @property
+    def image_url(self):
+        if self.thumbnail and hasattr(self.thumbnail, 'url'):
+            return self.thumbnail.url
 
 
 class CollectibleImage(models.Model):

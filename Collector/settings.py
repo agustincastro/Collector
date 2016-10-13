@@ -17,6 +17,11 @@ from os.path import normpath, join
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+
+# Absolute filesystem path to the top-level project folder:
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
@@ -28,6 +33,21 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+
+########## STATIC FILE CONFIGURATION
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
+STATIC_URL = '/static/'
+
+# See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
+STATICFILES_DIRS = (
+    normpath(join(BASE_DIR, 'static')),
+    normpath(join(BASE_DIR, 'static/css')),
+    normpath(join(BASE_DIR, 'static/js')),
+)
+
+########## END STATIC FILE CONFIGURATION
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,7 +58,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'catalog',
-    'contact'
+    'contact',
+    'common'
+
 ]
 
 MIDDLEWARE = [
@@ -46,6 +68,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -119,17 +142,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-########## STATIC FILE CONFIGURATION
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
-STATIC_URL = '/static/'
 
-# See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-STATICFILES_DIRS = (
-    normpath(join(BASE_DIR, 'static')),
-    normpath(join(BASE_DIR, 'static/css')),
-    normpath(join(BASE_DIR, 'static/js')),
-)
-########## END STATIC FILE CONFIGURATION
+########## APPLICATION SETTINGS
+
+PAGER_TAKE = 9  # Number of items for each paged list
+
+
+
+########## END APPLICATION SETTINGS

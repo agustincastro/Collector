@@ -1,11 +1,13 @@
 {% load static %}
 
 
-<div id="header-logo-container" class="row" >
+<div id="header-logo-container" class="row">
 
     <div class="col-lg-4"></div>
     <div class="col-lg-4">
-        <img id="header-logo" src="{% static 'images/collector_title.png' %}" alt="collector_title">
+        <a href="{% url 'index' %}">
+            <img id="header-logo" src="{% static 'images/collector_title.png' %}" alt="collector_title">
+        </a>
     </div>
     <div class="col-lg-4">
         <div class="social">
