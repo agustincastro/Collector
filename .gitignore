@@ -1,5 +1,5 @@
 # Python bytecode:
-*.py[co]
+*.pyc
 
 # Packaging files:
 *.egg*
