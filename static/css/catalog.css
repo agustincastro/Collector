@@ -11,6 +11,8 @@
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     border-radius: 0px;
+    height: 345px;
+    max-height: 354px;
 }
 
 .thumbnail > img {

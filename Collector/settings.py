@@ -64,7 +64,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -147,7 +147,6 @@ USE_TZ = True
 ########## APPLICATION SETTINGS
 
 PAGER_TAKE = 9  # Number of items for each paged list
-
 
 
 ########## END APPLICATION SETTINGS
