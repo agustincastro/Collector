@@ -17,7 +17,6 @@ from os.path import normpath, join
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Absolute filesystem path to the top-level project folder:
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
@@ -32,7 +31,6 @@ SECRET_KEY = ')0linzs@mc(w@lyr%-=)tm-$+vvo=z0yn*b*eb6h3q5#2!ub(@'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 ########## STATIC FILE CONFIGURATION
 
@@ -59,12 +57,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'catalog',
     'contact',
-    'common'
+    'common',
+    'authentication'
 
 ]
 
 MIDDLEWARE = [
-    #'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -82,6 +81,8 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
             os.path.join(BASE_DIR, 'templates/catalog'),
+            os.path.join(BASE_DIR, 'templates/authentication'),
+
         ]
         ,
         'APP_DIRS': True,
@@ -141,8 +142,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
 
 ########## APPLICATION SETTINGS
 
