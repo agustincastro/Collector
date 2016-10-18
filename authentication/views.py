@@ -1,10 +1,8 @@
 from django.contrib.auth import views
 from django.shortcuts import redirect, render
 from django.views.generic import View
-from django.contrib.auth.forms import UserCreationForm
+from authentication.forms import UserForm
 
-
-# Create your views here.
 
 def Login(request):
     template_response = views.login(request)
@@ -20,5 +18,5 @@ class Register(View):
         return redirect('Index')
 
     def get(self, request):
-        form = UserCreationForm()
+        form = UserForm()
         return render(request, 'authentication/register.html', {'form': form})
