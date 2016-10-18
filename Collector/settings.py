@@ -143,6 +143,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+AUTH_USER_MODEL = 'authentication.User'
+
 ########## APPLICATION SETTINGS
 
 PAGER_TAKE = 9  # Number of items for each paged list
