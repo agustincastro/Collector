@@ -1,12 +1,19 @@
 from django.contrib.auth import views
 from django.shortcuts import redirect, render
 from django.views.generic import View
+
 from authentication.forms import UserForm
 
 
 def Login(request):
-    template_response = views.login(request)
-    # return redirect('Index')
+    """
+    Adds signup form as an extra context variable
+    """
+    signup_form = UserForm()
+    template_response = views.login(request, template_name='authentication/login.html',
+                                    extra_context={'signup_form': signup_form})
+    return template_response
+
 
 
 class Register(View):

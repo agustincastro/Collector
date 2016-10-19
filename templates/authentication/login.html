@@ -18,23 +18,32 @@
     {% endif %}
 
 
-    <div class="container col-lg-5">
+    <!-- Login form -->
+    <div class="container col-lg-3 col-lg-offset-1">
         <h4>Login</h4>
         <hr>
-        <form method="post" action="{% url 'login' %}" class="form-horizontal">
+
+        <div class="social-buttons" style="height: 35px">
+            <a href="#" class="btn btn-fb col-sm-6"><i class="fa fa-facebook"></i>
+                Facebook</a>
+            <a href="#" class="btn btn-gp col-sm-6"><i class="fa fa-google-plus"></i> Google</a>
+        </div>
+
+
+        <form method="post" action="{% url 'login' %}" class="form-horizontal login-form">
             {% csrf_token %}
 
             <div class="form-group">
-                <label for='name' class="col-sm-2">{{ form.username.label_tag }} </label>
-                <div class="col-sm-10">
+                <div class="col-sm-12">
+                    <label>{{ form.username.label_tag }} </label>
                     {{ form.username | addcss:"form-control" }}
                 </div>
 
             </div>
 
             <div class="form-group">
-                <label for='name' class="col-sm-2">{{ form.password.label_tag }} </label>
-                <div class="col-sm-10">
+                <div class="col-sm-12">
+                    <label>{{ form.password.label_tag }} </label>
                     {{ form.password | addcss:"form-control" }}
                 </div>
 
@@ -48,13 +57,59 @@
             </div>
         </form>
 
-        {# Assumes you setup the password_reset view in your URLconf #}
         <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
 
     </div>
 
+    <!-- Create user form -->
+    <div class="container col-lg-5 col-lg-offset-2">
+        <h4>Sign up</h4>
+        <hr>
+
+        <form method="post" action="{% url 'register' %}" class="form-horizontal">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <label for=''> {{ signup_form.email.label }} </label>
+                    {{ signup_form.email | addcss:"form-control" }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-5">
+                    <label for=''> {{ signup_form.first_name.label }} </label>
+                    {{ signup_form.first_name | addcss:"form-control" }}
+                </div>
+                <div class="col-sm-5">
+                    <label for=''> {{ signup_form.last_name.label }} </label>
+                    {{ signup_form.last_name | addcss:"form-control" }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <label for=''> {{ signup_form.password.label }} </label>
+                    {{ signup_form.password | addcss:"form-control" }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <label for=''> {{ signup_form.confirm_password.label }} </label>
+                    {{ signup_form.confirm_password | addcss:"form-control" }}
+                </div>
+            </div>
 
 
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-info pull-right">Sign up!</button>
+                </div>
+            </div>
 
+        </form>
+
+    </div>
 
 {% endblock %}
