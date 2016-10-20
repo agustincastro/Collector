@@ -22,8 +22,20 @@ class Register(View):
     """
 
     def post(self, request):
-        return redirect('Index')
+        user_form = UserForm(data=request.POST)
 
-    def get(self, request):
-        form = UserForm()
-        return render(request, 'authentication/register.html', {'form': form})
+        if user_form.is_valid():
+            user = user_form.save(commit=False)
+            user.set_password(user.password)
+            user.save()
+            return redirect('index')
+
+        else:
+            template_response = views.login(request, template_name='authentication/login.html',
+                                    extra_context={'signup_form': user_form})
+            return template_response
+
+
+    #def get(self, request):
+    #    form = UserForm()
+    #    return render(request, 'authentication/register.html', {'form': form})

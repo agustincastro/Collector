@@ -5,7 +5,7 @@ from authentication.models import User
 class UserForm(ModelForm):
 
     password=forms.CharField(widget=forms.PasswordInput())
-    confirm_password=forms.CharField()
+    confirm_password=forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
         model = User
@@ -20,3 +20,4 @@ class UserForm(ModelForm):
             raise forms.ValidationError(
                 "password and confirm_password does not match"
             )
+        return self.cleaned_data
