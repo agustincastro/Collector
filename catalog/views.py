@@ -3,13 +3,15 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from Collector import settings
 from catalog.forms import ItemForm
 from catalog.models import Book
 
 
-class Index(ListView):
+
+class Index(LoginRequiredMixin, ListView):
     """
     Item results shown on index, this view handles pagination and rendering of the main page
     of the catalog app

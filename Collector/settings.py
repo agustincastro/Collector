@@ -144,12 +144,24 @@ USE_L10N = True
 USE_TZ = True
 
 AUTH_USER_MODEL = 'authentication.User' # Custom user model used for authentication
+LOGIN_URL = '/authentication/login/' # When user is not authenticated it redirect here
 LOGIN_REDIRECT_URL = '/catalog/' # When django auth validates the user it redirects here
 
 
 ########## APPLICATION SETTINGS
 
 PAGER_TAKE = 9  # Number of items for each paged list
+
+
+#Email Settings
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'bookcollectorapp@gmail.com'
+SERVER_EMAIL = 'bookcollectorapp@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'bookcollectorapp@gmail.com'
+EMAIL_HOST_PASSWORD = 'superpassword'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
 ########## END APPLICATION SETTINGS
