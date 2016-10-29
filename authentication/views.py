@@ -46,8 +46,8 @@ class Register(View):
 
 
 class ResetPasswordRequestView(FormView):
-    template_name = 'authentication/password_reset.html'
-    success_url = 'login'
+    template_name = 'password_reset.html'
+    success_url = '/authentication/login'
     form_class = PasswordResetRequestForm
 
     @staticmethod
@@ -112,9 +112,13 @@ class PasswordResetConfirmView(FormView):
         View that checks the hash in a password reset link and presents a
         form for entering a new password.
     """
-    template_name = "authentication/password_reset_enter_new.html"
-    success_url = 'login'
+    template_name = 'authentication/password_reset_enter_new.html'
+    success_url = '/authentication/login'
     form_class = SetPasswordForm
+
+    def get(self, request, uidb64=None, token=None, *arg, **kwargs):
+        form = SetPasswordForm()
+        return render(request, "authentication/password_reset_enter_new.html", {'form': form})
 
     def post(self, request, uidb64=None, token=None, *arg, **kwargs):
 
