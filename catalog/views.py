@@ -22,7 +22,7 @@ class Index(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(Index, self).get_context_data(**kwargs)
-        items = Book.objects.all()
+        items = Book.objects.filter(user=self.request.user)
 
         page = self.request.GET.get('page')
         # Add range template context variable that we can loop through pages
@@ -96,7 +96,9 @@ class CreateItem(View):
     def post(self, request):
         form = ItemForm(request.POST, request.FILES)
         if form.is_valid():
-            saved_item = form.save()
+            saved_item = form.save(commit=False)
+            saved_item.user = request.user
+            saved_item.save()
             # Redirects to the item details
             return redirect('item_detail', pk=saved_item.pk)
         else:
