@@ -11,7 +11,7 @@ from catalog.models import Book
 
 
 
-class Index(LoginRequiredMixin, ListView):
+class Index(ListView):
     """
     Item results shown on index, this view handles pagination and rendering of the main page
     of the catalog app
@@ -71,7 +71,7 @@ class CatalogListView(ListView):
 
     def get_queryset(self):
         if self.search_term:
-            return Book.objects.filter(name__icontains=self.search_term)
+            return Book.objects.filter(name__icontains=self.search_term, user = self.request.user)
         return Book.objects.all()
 
 

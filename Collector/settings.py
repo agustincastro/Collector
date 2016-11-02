@@ -59,11 +59,9 @@ INSTALLED_APPS = [
     'contact',
     'common',
     'authentication'
-
 ]
 
 MIDDLEWARE = [
-    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -71,7 +69,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Above are django standard middlewares
+
+    # Now we add here our custom middleware
+    'authentication.middleware.login_required_middleware.LoginRequiredMiddleware',
 ]
+
+
 
 ROOT_URLCONF = 'Collector.urls'
 
@@ -143,17 +147,21 @@ USE_L10N = True
 
 USE_TZ = True
 
-AUTH_USER_MODEL = 'authentication.User' # Custom user model used for authentication
-LOGIN_URL = '/authentication/login/' # When user is not authenticated it redirect here
-LOGIN_REDIRECT_URL = '/catalog/' # When django auth validates the user it redirects here
+AUTH_USER_MODEL = 'authentication.User'  # Custom user model used for authentication
+LOGIN_URL = '/authentication/login/'  # When user is not authenticated it redirect here
+LOGIN_REDIRECT_URL = '/catalog/'  # When django auth validates the user it redirects here
 
+# Urls accesible without authentication, view 'authentication/middleware/login_required_middleware' custom middleware
+LOGIN_EXEMPT_URLS = (
+    r'^authentication/',
+    r'^contact/',
+)
 
 ########## APPLICATION SETTINGS
 
 PAGER_TAKE = 9  # Number of items for each paged list
 
-
-#Email Settings
+# Email Settings
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'bookcollectorapp@gmail.com'
 SERVER_EMAIL = 'bookcollectorapp@gmail.com'
