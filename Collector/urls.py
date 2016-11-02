@@ -1,12 +1,14 @@
 from django.conf.urls import url, include
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.http import HttpResponseRedirect
-from django.conf.urls.static import static
+
 from Collector import settings
 
 urlpatterns = [
 
     url(r'^$', lambda r: HttpResponseRedirect('catalog/')),
+    url(r'^authentication/', include('authentication.urls')),
     url(r'^catalog/', include('catalog.urls')),
     url(r'^contact/', include('contact.urls')),
 

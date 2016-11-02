@@ -3,10 +3,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from Collector import settings
 from catalog.forms import ItemForm
 from catalog.models import Book
+
 
 
 class Index(ListView):
@@ -20,7 +22,7 @@ class Index(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(Index, self).get_context_data(**kwargs)
-        items = Book.objects.all()
+        items = Book.objects.filter(user=self.request.user)
 
         page = self.request.GET.get('page')
         # Add range template context variable that we can loop through pages
@@ -69,7 +71,7 @@ class CatalogListView(ListView):
 
     def get_queryset(self):
         if self.search_term:
-            return Book.objects.filter(name__icontains=self.search_term)
+            return Book.objects.filter(name__icontains=self.search_term, user = self.request.user)
         return Book.objects.all()
 
 
@@ -94,7 +96,9 @@ class CreateItem(View):
     def post(self, request):
         form = ItemForm(request.POST, request.FILES)
         if form.is_valid():
-            saved_item = form.save()
+            saved_item = form.save(commit=False)
+            saved_item.user = request.user
+            saved_item.save()
             # Redirects to the item details
             return redirect('item_detail', pk=saved_item.pk)
         else:
