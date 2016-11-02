@@ -78,7 +78,11 @@ class ResetPasswordRequestView(FormView):
             Verifies that the submited email is valid and gets its asociated user. If it is registered an
             email will be sent to that address with the reset link
             '''
-            user = User.objects.get(email=form_email)
+            try:
+                user = User.objects.get(email=form_email)
+            except User.DoesNotExist:
+                user = None
+
             if user is not None:
                 email_template_data = {
                     'email': user.email,
