@@ -1,4 +1,13 @@
 
+body {
+
+
+/*background: #8e9eab; !* fallback for old browsers *!*/
+/*background: -webkit-linear-gradient(to right, #bacad7, #eef2f3); !* Chrome 10-25, Safari 5.1-6 *!*/
+/*background: linear-gradient(to right, #bacad7, #eef2f3); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
+background: #EFEFEF;
+}
+
 #header-logo-container {
     width: 100%;
 }
@@ -80,12 +89,20 @@
 /*---------------  CUSTOM NAVBAR BUTTONS  -------------------*/
 
 ul.nav > li:hover {
-    background-color: #4484CE !important;
+    background-color: #FF3B3F !important;
 }
 
 ul.nav > li:hover > a {
-    padding-top: 5px !important;
+    padding-top: 10px !important;
     background-color: #e7e7e7 !important;
-    height: 40px;
-    margin-top: 10px;
+    height: 45px;
+    margin-top: 5px;
+}
+
+.navbar-default{
+    border-color: #A9A9A9;
+}
+
+hr{
+    border-color: #A9A9A9;
 }
