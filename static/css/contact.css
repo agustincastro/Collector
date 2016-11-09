@@ -1,0 +1,161 @@
+.team .thumbnail-style {
+	padding: 12px;
+}
+
+.team .thumbnail-style img {
+	margin-bottom: 7px;
+}
+
+.team .thumbnail-style h3 {
+	margin-bottom: 5px;
+}
+
+.team .thumbnail-style:hover h3 a {
+	color: #72c02c !important;
+}
+
+.team .thumbnail-style small {
+	display: block;
+	margin-top: 5px;
+	font-size: 12px;
+}
+
+/*Team v3
+------------------------------------*/
+.team-v3 .team-img {
+  position: relative;
+}
+
+.team-v3 .team-img:after {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: " ";
+  position: absolute;
+  transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+}
+
+.team-v3 .team-img:hover:after {
+  background: rgba(0,0,0,0.5);
+  transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+}
+
+.team-v3 .team-img > img {
+  width: 100%;
+}
+
+/*Team Hover Gradient*/
+.team-v3 .team-hover {
+  left: 0;
+  top: 60%;
+  z-index: 1;
+  padding: 0;
+  width: 100%;
+  padding: 20px;
+  list-style: none;
+  margin-top: -90px;
+  text-align: center;
+  visibility: hidden;
+  position: absolute;
+  transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+}
+
+.team-v3 .team-img:hover .team-hover {
+  top: 50%;
+  visibility: visible;
+}
+
+.team-v3 .team-hover span,
+.team-v3 .team-hover small {
+  color: #fff;
+  display: block;
+}
+
+.team-v3 .team-hover span {
+  font-size: 18px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.team-v3 .team-hover small {
+  font-size: 13px;
+  font-weight: 200;
+  margin-bottom: 10px;
+}
+
+.team-v3 .team-hover p {
+  color: #fff;
+  font-weight: 200;
+  margin-bottom: 20px;
+}
+
+/*Team Social*/
+.team-v3 .team-hover .team-social-v3 i {
+  color: #fff;
+  width: 33px;
+  height: 33px;
+  padding: 9px;
+  font-size: 14px;
+  text-align: center;
+  display: inline-block;
+  border: 1px solid #fff;
+}
+
+.team-v3 .team-hover .team-social-v3 i:hover {
+  color: #666;
+  background: #fff;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+}
+
+/*About Page
+------------------------------------*/
+.team ul.team-socail {
+	text-align: right;
+}
+
+.team ul.team-socail li {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.team ul.team-socail li a,
+.team ul.team-socail li a:hover {
+	text-decoration: none;
+}
+
+.team ul.team-socail li i {
+	color: #aaa;
+	padding: 6px 7px;
+	min-width: 30px;
+	font-size: 18px;
+	text-align: center;
+	background: #f7f7f7;
+	display: inline-block;
+}
+
+.team ul.team-socail li i:hover {
+	color: #fff;
+	background: #72c02c;
+	-webkit-transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+
+.md-margin-bottom-20 {
+    margin-bottom: 20px;
+}
