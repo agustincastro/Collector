@@ -1,15 +1,19 @@
 from django import forms
 from django.forms import ModelForm
+
 from authentication.models import User
 
-class UserForm(ModelForm):
 
-    password=forms.CharField(widget=forms.PasswordInput())
-    confirm_password=forms.CharField(widget=forms.PasswordInput())
+class UserForm(ModelForm):
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password'}))
 
     class Meta:
         model = User
-        fields=['email', 'first_name', 'last_name', 'password' ]
+        fields = ['email', 'first_name', 'last_name', 'password']
 
     def clean(self):
         cleaned_data = super(UserForm, self).clean()
@@ -17,9 +21,7 @@ class UserForm(ModelForm):
         confirm_password = cleaned_data.get("confirm_password")
 
         if password != confirm_password:
-            raise forms.ValidationError(
-                "password and confirm_password does not match"
-            )
+            raise forms.ValidationError("password and confirm_password does not match")
         return self.cleaned_data
 
 
@@ -34,7 +36,6 @@ class SetPasswordForm(forms.Form):
     new_password = forms.CharField(label=("New password"), widget=forms.PasswordInput)
     confirm_new_password = forms.CharField(label=("New password confirmation"), widget=forms.PasswordInput)
 
-
     def clean(self):
         cleaned_data = super(SetPasswordForm, self).clean()
         password = cleaned_data.get("new_password")
@@ -42,6 +43,6 @@ class SetPasswordForm(forms.Form):
 
         if password != confirm_password:
             raise forms.ValidationError(
-                "password and confirm_password does not match"
+                    "password and confirm_password does not match"
             )
         return self.cleaned_data
