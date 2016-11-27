@@ -45,10 +45,16 @@
   -o-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -webkit-transition: all 0.2s ease-in-out;
+    -webkit-border-radius:25px;
+    -moz-border-radius:25px;
+    border-radius:25px;
 }
 
 .team-v3 .team-img > img {
   width: 100%;
+    -webkit-border-radius:25px;
+    -moz-border-radius:25px;
+    border-radius:25px;
 }
 
 /*Team Hover Gradient*/
