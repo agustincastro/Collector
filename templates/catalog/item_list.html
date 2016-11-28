@@ -8,6 +8,7 @@
                 <h4 class="group inner list-group-item-heading">
                     <a href="/catalog/itemdetails/{{ item.pk }}">{{ item.name }}</a>
                 </h4>
+                <h5>{{ item.author }}</h5>
                 <p class="group inner list-group-item-text">
                     {{ item.description | truncatechars:120 }}</p>
                 <p class="group inner list-group-item-text">

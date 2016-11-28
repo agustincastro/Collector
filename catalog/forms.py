@@ -10,8 +10,9 @@ class ItemForm(ModelForm):
 
     class Meta:
         model = Book
-        fields=['name', 'isbn', 'description', 'date_aquired', 'currency', 'price', 'quantity', 'category', 'thumbnail' ]
-        widgets={
-            'name' : forms.TextInput(attrs={'placeholder': 'Some Name ...'}),
-            'description' : forms.Textarea( attrs={'rows':'4', 'placeholder': 'Item Description ...'}),
+        fields = ['name', 'author', 'isbn', 'description', 'date_aquired', 'currency', 'price', 'quantity', 'category',
+                  'thumbnail']
+        widgets = {
+            'name': forms.TextInput(attrs={'placeholder': 'Some Name ...'}),
+            'description': forms.Textarea(attrs={'rows': '4', 'placeholder': 'Item Description ...'}),
         }

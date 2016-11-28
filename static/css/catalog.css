@@ -11,8 +11,8 @@
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     border-radius: 0px;
-    height: 345px;
-    max-height: 354px;
+    height: 370px;
+    max-height: 370px;
 }
 
 .thumbnail > img {
@@ -75,4 +75,8 @@
 
 .thumbnail-gallery > li > img{
     max-height: 50px;
+}
+
+.group.list-group-image {
+    padding-left: 20px;
 }

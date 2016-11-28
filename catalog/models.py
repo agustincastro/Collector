@@ -2,22 +2,35 @@ import os
 from django.db import models
 from Collector import settings
 
+
 class Currency(models.Model):
     name = models.CharField(max_length=50)
     symbol = models.CharField(max_length=5)
+
     def __unicode__(self):
-       return self.name
+        return self.name
+
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
     parent = models.ForeignKey('self', null=True, blank=True)
+
     def __unicode__(self):
-       return self.name
+        return self.name
+
+
+class Author(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __unicode__(self):
+        return self.name
+
 
 class Book(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
-    isbn = models.CharField(max_length=20, null=True)
+    author = models.ForeignKey(Author, null=True)
+    isbn = models.CharField("ISBN", max_length=20, null=True)
     description = models.CharField(max_length=1000, null=True)
     date_aquired = models.DateTimeField('date aquired', null=True, blank=True)
     price = models.IntegerField(default=0)
@@ -27,7 +40,7 @@ class Book(models.Model):
     thumbnail = models.FileField(upload_to='book_images/', blank=True, null=True)
 
     def __unicode__(self):
-       return self.name
+        return self.name
 
     @property
     def image_url(self):
