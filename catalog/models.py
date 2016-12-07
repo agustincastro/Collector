@@ -38,6 +38,7 @@ class Book(models.Model):
     quantity = models.IntegerField(default=0, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     thumbnail = models.FileField(upload_to='book_images/', blank=True, null=True)
+    published_date = models.DateTimeField('Published date', null=True, blank=True)
 
     def __unicode__(self):
         return self.name
