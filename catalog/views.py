@@ -6,9 +6,8 @@ from django.views.generic import ListView, DetailView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from Collector import settings
-from catalog.forms import ItemForm
-from catalog.models import Book
-
+from catalog.forms import ItemForm, AuthorForm
+from catalog.models import Book, Author
 
 
 class Index(ListView):
@@ -71,7 +70,7 @@ class CatalogListView(ListView):
 
     def get_queryset(self):
         if self.search_term:
-            return Book.objects.filter(name__icontains=self.search_term, user = self.request.user)
+            return Book.objects.filter(name__icontains=self.search_term, user=self.request.user)
         return Book.objects.all()
 
 
@@ -113,7 +112,7 @@ class EditItem(View):
 
     def post(self, request, pk):
         item = get_object_or_404(Book, pk=pk)
-        form = ItemForm(request.POST,request.FILES, instance=item)
+        form = ItemForm(request.POST, request.FILES, instance=item)
         if form.is_valid():
             saved_item = form.save()
             return redirect('item_detail', pk=saved_item.pk)
@@ -124,3 +123,68 @@ class EditItem(View):
 class RemoveItem(DeleteView):
     model = Book
     success_url = reverse_lazy('index')
+
+
+class AuthorListView(ListView):
+    """
+    Gets the authors data
+    """
+    model = Author
+    template_name = 'author_list.html'
+    search_term = ''  # search term for filter
+
+    def get_context_data(self, **kwargs):
+        context = super(AuthorListView, self).get_context_data(**kwargs)
+        authors = Author.objects.all().order_by('name')
+        context['authors'] = authors
+        return context
+
+    def get(self, request, *args, **kwargs):
+        self.search_term = request.GET.get('search_term', '').strip()
+        return super(AuthorListView, self).get(request, *args, **kwargs)
+
+    def get_queryset(self):
+        if self.search_term:
+            return Author.objects.filter(name__icontains=self.search_term, user=self.request.user)
+        return Author.objects.all()
+
+
+class CreateAuthor(View):
+    def get(self, request):
+        form = AuthorForm()
+        return render(request, 'catalog/edit_author.html', {'form': form})
+
+    def post(self, request):
+        form = AuthorForm(request.POST)
+        if form.is_valid():
+            saved_item = form.save(commit=False)
+            saved_item.save()
+            # Redirects to the item details
+            return redirect('author_list')
+        else:
+            return render(request, 'catalog/edit_author.html', {'form': form})
+
+
+class EditAuthor(View):
+    def get(self, request, pk):
+        author = get_object_or_404(Author, pk=pk)
+        form = AuthorForm(instance=author)
+        return render(request, 'catalog/edit_author.html', {'form': form, 'id': author.id})
+
+    def post(self, request, pk):
+        author = get_object_or_404(Author, pk=pk)
+        form = AuthorForm(request.POST, instance=author)
+        if form.is_valid():
+            saved_item = form.save()
+            return redirect('author_list')
+        else:
+            return render(request, 'catalog/edit_author.html', {'form': form})
+
+
+class RemoveAuthor(DeleteView):
+    model = Author
+    success_url = reverse_lazy('author_list')
+
+    # DEF GET ADDED SO NO CONFIRMATION IS NEEDED FOR DELETE
+    def get(self, *args, **kwargs):
+        return self.post(*args, **kwargs)

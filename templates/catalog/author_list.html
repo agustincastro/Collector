@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block author_active %}active{% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+    <div class="form-group pull-right">
+        <a href="/catalog/create-author" id="grid" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-plus"></span>
+            Add
+        </a>
+    </div>
+
+    <ul class="list-group">
+        {% for author in authors %}
+            <li class="list-group-item">
+                <a href="/catalog/edit-author/{{ author.id }}">{{ author.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

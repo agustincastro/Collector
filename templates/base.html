@@ -73,6 +73,9 @@
                     <li class="{% block home_active %}{% endblock %}">
                         <a href="{% url 'index' %}">Gallery <span class="sr-only">(current)</span></a>
                     </li>
+                    <li class="{% block author_active %}{% endblock %}">
+                        <a href={% url 'author_list' %}>Book Authors</a>
+                    </li>
                     <li class="{% block contact_active %}{% endblock %}">
                         <a href={% url 'contact' %}>Contact</a>
                     </li>

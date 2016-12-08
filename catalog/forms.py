@@ -2,7 +2,7 @@ import datetime
 from django import forms
 from django.forms import ModelForm, DateInput
 from django.forms.extras.widgets import SelectDateWidget
-from catalog.models import Book
+from catalog.models import Book, Author
 
 
 class ItemForm(ModelForm):
@@ -18,4 +18,14 @@ class ItemForm(ModelForm):
         widgets = {
             'name': forms.TextInput(attrs={'placeholder': 'Some Name ...'}),
             'description': forms.Textarea(attrs={'rows': '4', 'placeholder': 'Item Description ...'}),
+        }
+
+
+
+class AuthorForm(ModelForm):
+    class Meta:
+        model = Author
+        fields = ['name']
+        widgets = {
+            'name': forms.TextInput(attrs={'placeholder': 'Author name...'}),
         }

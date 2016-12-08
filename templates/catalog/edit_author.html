@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load boostrap_tags %}
+
+{% block content %}
+
+    <div class="container col-lg-5">
+        <h4>Add author</h4>
+        <hr>
+        <form method="post" class="form-horizontal" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for='name' class="col-sm-12"> {{ form.name.label }} </label>
+                <div class="col-sm-12">
+                    {{ form.name | addcss:"form-control" }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <a href="{% url 'remove_author' pk=id %}" class="btn btn-danger">Delete</a>
+                    <button type="submit" class="btn btn-info pull-right">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+{% endblock %}
