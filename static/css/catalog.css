@@ -61,6 +61,11 @@
 
 /* Item Details */
 
+.image-preview {
+    max-height: 400px;
+    max-width: 100%;
+}
+
 .thumbnail-gallery {
     margin-top: 15px;
     text-align: center;

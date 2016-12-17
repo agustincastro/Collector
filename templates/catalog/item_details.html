@@ -6,7 +6,7 @@
 
     <div class="row">
         <div class="col-lg-3 center-block">
-            <img class="group list-group-image center-block"
+            <img class="image-preview group list-group-image center-block"
                  src="{{ object.image_url|default_if_none:"/media/book_images/no_image.png" }}" alt=""/>
             <ul class="list-inline thumbnail-gallery">
                 {% for image in images %}
