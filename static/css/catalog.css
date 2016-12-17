@@ -1,8 +1,7 @@
-
 /* Item Gallery */
 
-#products{
-    padding:0 9px 0 9px;
+#products {
+    padding: 0 9px 0 9px;
 }
 
 .thumbnail {
@@ -60,19 +59,18 @@
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
-
 /* Item Details */
 
-.thumbnail-gallery{
-    margin-left: 20px;
+.thumbnail-gallery {
     margin-top: 15px;
+    text-align: center;
 }
 
-.thumbnail-gallery > li{
+.thumbnail-gallery > li {
     list-style-position: inside;
     border: 1px solid gray;
 }
 
-.thumbnail-gallery > li > img{
+.thumbnail-gallery > li > img {
     max-height: 50px;
 }
