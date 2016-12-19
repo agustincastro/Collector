@@ -20,13 +20,71 @@
     <![endif]-->
     <!-- Project specific CSS -->
     <link href="{% static 'css/general.css' %}" rel="stylesheet">
+    <link href="{% static 'css/catalog.css' %}" rel="stylesheet">
+    <link href="{% static 'css/authentication.css' %}" rel="stylesheet">
+
     <link href="{% static 'css/social-icons.css' %}" rel="stylesheet">
 
+    {% block extra_css %}{% endblock %}
+
+    {% load static %}
 </head>
 
 <body>
 <header>
-    {% include "header.html" %}
+    <div id="header-logo-container" class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <a href="{% url 'index' %}">
+                <img id="header-logo" src="{% static 'images/collector-title2.png' %}" alt="collector_title">
+            </a>
+        </div>
+        <div class="col-lg-4">
+            <div class="social">
+                <i id="twitter" class="fa fa-twitter fa-2x" aria-hidden="true"></i>
+                <i id="facebook" class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>
+                <i id="plus" class="fa fa-google-plus fa-2x" aria-hidden="true"></i>
+                <i id="instagram" class="fa fa-instagram fa-2x" aria-hidden="true"></i>
+                <i id="pinterest" class="fa fa-pinterest fa-2x" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img alt="Brand" src="{% static 'images/book-thumb.png' %}" class="navbar-brand-thumb">
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="{% block home_active %}{% endblock %}">
+                        <a href="{% url 'index' %}">Gallery <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="{% block contact_active %}{% endblock %}">
+                        <a href={% url 'contact' %}>Contact</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Backoffice</a></li>
+                    <li><a href="{% url 'logout' %}">logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
 </header>
 
 <div id="content">
@@ -39,6 +97,7 @@
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 <script src="{% static 'js/jquery-ui.min.js' %}"></script>
 <!-- project specific Javascript -->
+<script src="{% static 'js/catalog.js' %}"></script>
 
 </body>
 </html>

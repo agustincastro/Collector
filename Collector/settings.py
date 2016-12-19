@@ -17,6 +17,10 @@ from os.path import normpath, join
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Absolute filesystem path to the top-level project folder:
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
@@ -28,6 +32,20 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+########## STATIC FILE CONFIGURATION
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
+STATIC_URL = '/static/'
+
+# See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
+STATICFILES_DIRS = (
+    normpath(join(BASE_DIR, 'static')),
+    normpath(join(BASE_DIR, 'static/css')),
+    normpath(join(BASE_DIR, 'static/js')),
+)
+
+########## END STATIC FILE CONFIGURATION
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,7 +55,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'catalog'
+    'catalog',
+    'contact',
+    'common',
+    'authentication'
 ]
 
 MIDDLEWARE = [
@@ -48,7 +69,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Above are django standard middlewares
+
+    # Now we add here our custom middleware
+    'authentication.middleware.login_required_middleware.LoginRequiredMiddleware',
 ]
+
+
 
 ROOT_URLCONF = 'Collector.urls'
 
@@ -58,6 +85,8 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
             os.path.join(BASE_DIR, 'templates/catalog'),
+            os.path.join(BASE_DIR, 'templates/authentication'),
+
         ]
         ,
         'APP_DIRS': True,
@@ -118,18 +147,29 @@ USE_L10N = True
 
 USE_TZ = True
 
-########## STATIC FILE CONFIGURATION
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
+AUTH_USER_MODEL = 'authentication.User'  # Custom user model used for authentication
+LOGIN_URL = '/authentication/login/'  # When user is not authenticated it redirect here
+LOGIN_REDIRECT_URL = '/catalog/'  # When django auth validates the user it redirects here
 
-# See: https://docs.djangoproject.com/en/dev/ref/settings/#static-url
-STATIC_URL = '/static/'
-
-# See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-STATICFILES_DIRS = (
-    normpath(join(BASE_DIR, 'static')),
-    normpath(join(BASE_DIR, 'static/css')),
-    normpath(join(BASE_DIR, 'static/js')),
+# Urls accesible without authentication, view 'authentication/middleware/login_required_middleware' custom middleware
+LOGIN_EXEMPT_URLS = (
+    r'^authentication/',
+    r'^contact/',
 )
 
-########## END STATIC FILE CONFIGURATION
+########## APPLICATION SETTINGS
+
+PAGER_TAKE = 9  # Number of items for each paged list
+
+# Email Settings
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'bookcollectorapp@gmail.com'
+SERVER_EMAIL = 'bookcollectorapp@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'bookcollectorapp@gmail.com'
+EMAIL_HOST_PASSWORD = 'superpassword'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+
+########## END APPLICATION SETTINGS

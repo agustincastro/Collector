@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% load boostrap_tags %}
+
+{% block content %}
+
+
+    <!-- Login form -->
+    <div class="container col-lg-3 col-lg-offset-1 login-form-container">
+        <h4 class="text-center">Login</h4>
+        <hr>
+
+        <div class="social-buttons" style="height: 35px">
+            <a href="#" class="btn btn-fb col-sm-6"><i class="fa fa-facebook"></i>
+                Facebook</a>
+            <a href="#" class="btn btn-gp col-sm-6"><i class="fa fa-google-plus"></i> Google</a>
+        </div>
+
+
+        <form method="post" action="{% url 'login' %}" class="form-horizontal login-form">
+            {% csrf_token %}
+
+            <div class="col-sm-12">
+                <div class="form-group has-feedback">
+{#                    {{ form.username | addcss:"form-control" }}#}
+                    <input autofocus="" class="form-control" id="id_username" maxlength="254" name="username" type="text" required="" placeholder="Email">
+                    <span class="fa fa-envelope-o form-control-feedback"></span>
+                </div>
+            </div>
+
+             <div class="col-sm-12">
+                <div class="form-group has-feedback">
+{#                    {{ form.password | addcss:"form-control" }}#}
+                    <input class="form-control" id="id_password" name="password" type="password" required="" placeholder="Password">
+                    <span class="fa fa-key form-control-feedback"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <button type="submit" class="btn btn-info pull-right btn-block">Login</button>
+                    <input type="hidden" name="next" value="{{ next }}"/>
+                </div>
+            </div>
+        </form>
+
+        <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+
+
+        {% if form.errors %}
+            <p>Your username and password didn't match. Please try again.</p>
+        {% endif %}
+
+        {% if next %}
+            {% if user.is_authenticated %}
+                <p>Your account doesn't have access to this page. To proceed,
+                    please login with an account that has access.</p>
+            {% else %}
+                <p>Please login to see this page.</p>
+            {% endif %}
+        {% endif %}
+
+    </div>
+
+    <!-- Create user form -->
+    <div class="container col-lg-4 col-lg-offset-2 login-form-container">
+        <h4 class="text-center">Sign up</h4>
+        <hr>
+
+        <form method="post" action="{% url 'register' %}" class="form-horizontal">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    {{ signup_form.email | addcss:"form-control" }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-6">
+                    {{ signup_form.first_name|addcss:"form-control" }}
+                </div>
+                <div class="col-sm-6">
+                    {{ signup_form.last_name | addcss:"form-control" }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    {{ signup_form.password | addcss:"form-control" }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    {{ signup_form.confirm_password | addcss:"form-control" }}
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <button type="submit" class="btn btn-info btn-block pull-right">Sign up!</button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+{% endblock %}
