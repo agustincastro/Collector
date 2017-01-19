@@ -57,7 +57,7 @@
                     {% csrf_token %}
 
                     <div id="contact_name"
-                         class="form-group {% if contact_form.name.errors %}has-errors{% endif %}">
+                         class="form-group {% if contact_form.name.errors %}has-error{% endif %}">
                         <label for="contact_name "
                                class="control-label">{{ contact_form.name.errors.as_text }}</label>
                         <div class="col-sm-6">
@@ -66,7 +66,7 @@
                     </div>
 
                     <div id="contact_email"
-                         class="form-group {% if contact_form.email.errors %}has-errors{% endif %}">
+                         class="form-group {% if contact_form.email.errors %}has-error{% endif %}">
                         <label for="contact_email "
                                class="control-label">{{ contact_form.email.errors.as_text }}</label>
                         <div class="col-md-6">
@@ -75,7 +75,7 @@
                     </div>
 
                     <div id="contact_message"
-                         class="form-group {% if contact_form.message.errors %}has-errors{% endif %}">
+                         class="form-group {% if contact_form.message.errors %}has-error{% endif %}">
                         <label for="contact_message "
                                class="control-label">{{ contact_form.message.errors.as_text }}</label>
                         <div class="col-md-8">
