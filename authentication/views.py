@@ -27,7 +27,7 @@ def Login(request):
 
 class Register(View):
     """
-    Handles resgistration of users
+    Handles registration of users
     """
 
     def post(self, request):
