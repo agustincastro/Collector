@@ -1,4 +1,4 @@
-###Collector
+### Collector
 
 Website for book collectors and enthusiasts to manage their collections, each user can login using their email account and store their book collections inside the site.
 
